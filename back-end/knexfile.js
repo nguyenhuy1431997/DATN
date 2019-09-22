@@ -4,7 +4,7 @@ module.exports = {
   client: "mysql",
   connection: {
     host: "localhost",
-    database: "training",
+    database: "timtro",
     user: "root",
     password: "123456",
     port: 3306

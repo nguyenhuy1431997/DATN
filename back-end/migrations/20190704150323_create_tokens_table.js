@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer("user_id");
     table.string("token").unique();
-    table.string("status");
+    table.boolean("status").defaultTo(true);
   });
 };
 

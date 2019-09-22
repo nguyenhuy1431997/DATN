@@ -2,19 +2,15 @@ const userRouter = require("../Routers/user");
 
 const authRouter = require("../Routers/auth");
 
-const teamRouter = require("../Routers/Team");
+const district = require("../Routers/district");
 
-const productAge = require("../Routers/productAge");
+const roomType = require("../Routers/roomType");
 
-const productGender = require("../Routers/productGender");
+const imageType = require("../Routers/imageType");
 
-const productType = require("../Routers/productType");
+const room = require("../Routers/room");
 
-const productColor = require("../Routers/productColor");
-
-const product = require("../Routers/product");
-
-const productImage = require("../Routers/productImage");
+const roomImage = require("../Routers/roomImage");
 
 const app = require("./app");
 
@@ -24,16 +20,12 @@ app.use(`${apiPrefix}/auth`, authRouter);
 
 app.use(`${apiPrefix}/users`, userRouter);
 
-app.use(`${apiPrefix}/teams`, teamRouter);
+app.use(`${apiPrefix}/districts`, district);
 
-app.use(`${apiPrefix}/productages`, productAge);
+app.use(`${apiPrefix}/roomtypes`, roomType);
 
-app.use(`${apiPrefix}/productgenders`, productGender);
+app.use(`${apiPrefix}/imagetypes`, imageType);
 
-app.use(`${apiPrefix}/producttypes`, productType);
+app.use(`${apiPrefix}/rooms`, room);
 
-app.use(`${apiPrefix}/productcolors`, productColor);
-
-app.use(`${apiPrefix}/products`, product);
-
-app.use(`${apiPrefix}/productimages`, productImage);
+app.use(`${apiPrefix}/roomimages`, roomImage);
