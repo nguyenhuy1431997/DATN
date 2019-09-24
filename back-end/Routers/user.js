@@ -16,12 +16,12 @@ const {
 
 const router = express.Router();
 
-router.get("/filter/:page/:pageSize", (req, res, next) => {
-  userController.filter({ req, res, next });
-});
-
 router.use((req, res, next) => {
   authMiddleware.auth({ req, res, next });
+});
+
+router.get("/filter/:page/:pageSize", (req, res, next) => {
+  userController.filter({ req, res, next });
 });
 
 router.route("/me").get((req, res, next) => {

@@ -8,7 +8,7 @@ const knex = Knex({
     host: "localhost",
     database: "timtro",
     user: "root",
-    password: "123456",
+    password: "",
     port: 3306
   },
   pool: {
