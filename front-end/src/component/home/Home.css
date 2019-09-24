@@ -3,12 +3,12 @@
     color: #fff;
 }
 .Home {
-    /* background: #3a3939; */
-    /* background: rgb(238,174,202);
-    background: linear-gradient(0deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 30%); */
-    /* background: rgb(255,204,226);
-background: linear-gradient(0deg, rgba(255,204,226,1) 0%, rgba(148,187,233,1) 50%, rgba(204,230,201,1) 100%); */
-    
+    background: #3a3939;
+    background: rgb(238,174,202);
+    background: linear-gradient(0deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 30%);
+    background: rgb(255,204,226);
+    background: linear-gradient(0deg, rgba(255,204,226,1) 0%, rgba(148,187,233,1) 50%, rgba(204,230,201,1) 100%);
+
 }
 .card-item {
     background: transparent;
@@ -44,4 +44,14 @@ background: linear-gradient(0deg, rgba(255,204,226,1) 0%, rgba(148,187,233,1) 50
     position: absolute;
     right: 10px;
     line-height: 26px;
+}
+.formAdd>input{
+    width: 220px;
+    height: 38px;
+    border: 1px solid #ADADAD;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.formAdd{
+    position: relative;
 }

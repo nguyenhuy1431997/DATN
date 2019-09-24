@@ -3,7 +3,7 @@ import Select from "react-select";
 
 class SelectLoai extends Component {
     render() {
-        let Options=[
+        let OptionsLoai=[
             {value:'tuquan',label:'Tự quản'},
             {value:'chungchu',label:'Chung chủ'},
             {value:'chungcu',label:'Chung cư'},
@@ -15,8 +15,10 @@ class SelectLoai extends Component {
                     classNamePrefix="select"
                     defaultValue={[]}
                     name="color"
-                    options={Options}
+                    options={OptionsLoai}
                     placeholder='Chọn loại phòng'
+                    isClearable
+                    onChange={(value)=>{this.props.onFilterLoai(value)}}
                 />
             </div>
         );

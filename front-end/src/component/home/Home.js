@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
 import { Button, Nav, Navbar ,Carousel} from 'react-bootstrap';
-import { ButtonGroup, DropdownButton, Dropdown ,ButtonToolbar} from 'react-bootstrap';
 import ProductContainers from './../containers/ProductContainers';
 import { Container,Row,Col } from 'react-bootstrap';
 import './Home.css';
-import Select from 'react-select';
 import SelectKhuvuc from "./SelectKhuvuc";
 import SelectGia from "./SelectGia";
 import SelectLoai from "./SelectLoai";
 import SelectNamNu from "./SelectNamNu";
 import Dientich from "./Dientich";
 import Loc from "./Loc";
+import {Modal,ModalHeader,ModalBody,ModalFooter} from "reactstrap";
+import Select from "react-select";
 
 
 class Home extends Component {
@@ -19,19 +19,105 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            filter: ""
-        }
+            khuvuc: "",
+            loai: "",
+            namNu:"",
+            show:false
+        };
+        this.onFilterKhuvuc=this.onFilterKhuvuc.bind(this);
+        this.onFilterLoai=this.onFilterLoai.bind(this);
+        this.onFilterNamNu=this.onFilterNamNu.bind(this);
+        this.handleShow=this.handleShow.bind(this);
+        this.handleClose=this.handleClose.bind(this);
+        this.onChange=this.onChange.bind(this);
+        this.onSubmit=this.onSubmit.bind(this);
     }
 
-    onfilter(value) {
+    onFilterKhuvuc(value) {
+        if(value){
+            this.setState({
+                khuvuc: value.label
+            });
+        }else {
+            this.setState({
+                khuvuc:""
+            })
+        }
+
+    }
+    onFilterLoai(value) {
+        if(value){
+            this.setState({
+                loai: value.label
+            });
+        }else {
+            this.setState({
+                loai:""
+            })
+        }
+
+    }
+
+    onFilterNamNu(value) {
+        if(value){
+            this.setState({
+                namNu: value.label
+            });
+        }else {
+            this.setState({
+                namNu:""
+            })
+        }
+
+    }
+
+    handleShow(){
         this.setState({
-            filter: value
-        });
+            show:!this.state.show
+        })
+    }
+
+    handleClose(){
+        this.setState({
+            show:!this.state.show
+        })
+    }
+
+    onChange(event){
+        // let target = event.target;
+        // let name = target.name;
+        // let value = target.value;
+        console.log(event)
+    }
+
+    onSubmit(event){
+        event.preventDefault();
+        console.log("-------");
     }
 
     render() {
-        var { access } = this.props;
-        var { filter } = this.state;
+        let { access } = this.props;
+        let { khuvuc,loai,namNu,show } = this.state;
+        let OptionsKhuVuc=[
+            {value:'lienchien',label:'Liên Chiển'},
+            {value:'haichau',label:'Hải Châu'},
+            {value:'camle',label:'Cẩm Lệ'},
+            {value:'thanhkhe',label:'Thanh Khê'},
+            {value:'nguhanhson',label:'Ngũ Hành Sơn'},
+            {value:'sontra',label:'Sơn Trà'},
+            {value:'hoavang',label:'Hòa Vang'},
+            {value:'hoangsa',label:'Hoàng Sa'},
+        ];
+        let OptionsLoai=[
+            {value:'tuquan',label:'Tự quản'},
+            {value:'chungchu',label:'Chung chủ'},
+            {value:'chungcu',label:'Chung cư'},
+        ];
+        let OptionsNamNu=[
+            {value:'nam',label:'Nam'},
+            {value:'nu',label:'Nữ'},
+            {value:'namnuchung',label:'Chung Nam-Nữ'},
+        ];
         return (
             <div className="Home">
                 <Navbar className="Header">
@@ -60,10 +146,10 @@ class Home extends Component {
                         >Đăng Ký</Button>}
                         {this.props.access &&
 
-                            <span
-                                className="icon-login mr-sm-2 fa fa-user-circle pr-2"
-                            >&nbsp;
-                                Chào {this.props.accout} !
+                        <span
+                            className="icon-login mr-sm-2 fa fa-user-circle pr-2"
+                        >&nbsp;
+                            Chào {this.props.accout} !
                             </span>
                         }
                         {this.props.access && <Button
@@ -74,37 +160,6 @@ class Home extends Component {
                         >Đăng xuất</Button>}
                     </Form>
                 </Navbar>
-                 {/*<div className="d-flex justify-content-center align-items-center">*/}
-                 {/*    <ButtonGroup className="mt-4 center w-75">*/}
-                 {/*       <Button variant="secondary" onClick={() => this.onfilter("")}>Tất cả</Button>*/}
-                 {/*       /!*<Button variant="secondary" onClick={() => this.onfilter("iPhone")}>Khu vực</Button>*!/*/}
-                 {/*        <DropdownButton variant="secondary" as={ButtonGroup} title="Khu vực" id="bg-nested-dropdown">*/}
-                 {/*            <Dropdown.Item eventKey="1"  >NOKIA</Dropdown.Item>*/}
-                 {/*            <Dropdown.Item eventKey="2" >REALME </Dropdown.Item>*/}
-                 {/*            <Dropdown.Item eventKey="3" >HUAWEI </Dropdown.Item>*/}
-                 {/*        </DropdownButton>*/}
-                 {/*        <Button variant="secondary" onClick={() => this.onfilter("VIVO")}>Loại trọ</Button>*/}
-                 {/*       <Button variant="secondary" onClick={() => this.onfilter("SAMSUNG")}>Diện tích</Button>*/}
-                 {/*       <Button variant="secondary" onClick={() => this.onfilter("OPPO")}>Giá</Button>*/}
-                 {/*       <Button variant="secondary" onClick={() => this.onfilter("XIAOMI")}>Ưu tiên Nam/nữ</Button>*/}
-                 {/*       <Button variant="secondary" onClick={() => this.onfilter("HUAWEI")}>chung/riêng chủ</Button>*/}
-                 {/*        <DropdownButton variant="secondary" as={ButtonGroup} title="Xem thêm" id="bg-nested-dropdown">*/}
-                 {/*           <Dropdown.Item eventKey="1"  >NOKIA</Dropdown.Item>*/}
-                 {/*           <Dropdown.Item eventKey="2" >REALME </Dropdown.Item>*/}
-                 {/*           <Dropdown.Item eventKey="3" >HUAWEI </Dropdown.Item>*/}
-                 {/*        </DropdownButton>*/}
-                 {/*   </ButtonGroup>*/}
-                 {/*</div>*/}
-
-
-
-                {/*<br />*/}
-                {/*<ProductContainers*/}
-                {/*access={access}*/}
-                {/*accout={this.props.accout}*/}
-                {/*filter={filter}*/}
-                {/*>*/}
-                {/*</ProductContainers>*/}
                 <div className="container mt-3">
                     <Carousel className="slide">
                         <Carousel.Item className='slide_Item'>
@@ -146,7 +201,7 @@ class Home extends Component {
                             </button>
                         </Col>
                         <Col>
-                            <SelectKhuvuc/>
+                            <SelectKhuvuc onFilterKhuvuc={this.onFilterKhuvuc}/>
                         </Col>
                         <Col>
                             <SelectGia/>
@@ -160,10 +215,10 @@ class Home extends Component {
 
                         </Col>
                         <Col>
-                            <SelectLoai/>
+                            <SelectLoai onFilterLoai={this.onFilterLoai}/>
                         </Col>
                         <Col>
-                            <SelectNamNu/>
+                            <SelectNamNu onFilterNamNu={this.onFilterNamNu}/>
                         </Col>
                         <Col>
                             <Loc/>
@@ -187,18 +242,67 @@ class Home extends Component {
                         <Col>
                             {
                                 this.props.access &&
-                                <button className='create'>
+                                <button className='create'  onClick={this.handleShow}>
                                     Thêm trọ
-                                    <i className="fa fa-plus"></i>
+                                    <i className="fa fa-plus"/>
                                 </button>
                             }
                         </Col>
                     </Row>
                 </Container>
+                <Modal isOpen={show}>
+                    <ModalHeader>Thêm phòng</ModalHeader>
+                    <ModalBody>
+                        <Form onSubmit={this.onSubmit} className="formAdd">
+                            <input placeholder="Tên" className="mr-4 mb-4"/>
+                            <input placeholder="Địa chỉ"/>
+                            <input placeholder="Giá" className="mr-4 mb-4"/>
+                            <input placeholder="Diện tích"/>
+                            <Select
+                                className="basic-single mb-4"
+                                classNamePrefix="select"
+                                defaultValue={[]}
+                                name="color"
+                                options={OptionsKhuVuc}
+                                placeholder='Chọn khu vực'
+                                isClearable
+                                onChange={this.onChange}
+
+                            />
+                            <Select
+                                className="basic-single mb-4"
+                                classNamePrefix="select"
+                                defaultValue={[]}
+                                name="color"
+                                options={OptionsNamNu}
+                                placeholder='Chọn loại phòng'
+                                isClearable
+                                onChange={this.onChange}
+                            />
+                            <Select
+                                className="basic-single mb-4"
+                                classNamePrefix="select"
+                                defaultValue={[]}
+                                name="color"
+                                options={OptionsLoai}
+                                placeholder='Ưu tiên Nam/Nữ'
+                                isClearable
+                                onChange={this.onChange}
+                            />
+                            <ModalFooter>
+                                <Button color="secondary" onClick={this.handleClose}>Cancel</Button>
+                                <Button type="submit" color="primary">Add</Button>
+                            </ModalFooter>
+
+                        </Form>
+                    </ModalBody>
+                </Modal>
                 <ProductContainers
-                access={access}
-                accout={this.props.accout}
-                filter={filter}
+                    access={access}
+                    accout={this.props.accout}
+                    khuvuc={khuvuc}
+                    loai={loai}
+                    namNu={namNu}
                 >
                 </ProductContainers>
             </div>

@@ -15,7 +15,7 @@ class Products extends Component {
         }
         else {
             alert('Mua hàng thành công');
-            
+
             this.props.onShopping(this.props.product.name,this.props.product.id,this.props.product.price,this.props.accout);
         }
     }
@@ -28,9 +28,9 @@ class Products extends Component {
                     <Card.Body>
                         <div className={"d-flex flex-column align-items-center"}>
                             <Card.Title>{this.props.product.name}</Card.Title>
-                            <Card.Text>
-                                {this.props.product.description}
-                            </Card.Text>
+                            <Card.Text>Địa chỉ: {this.props.product.diachi}</Card.Text>
+                            <Card.Text>Diện tích: {this.props.product.dientich}m</Card.Text>
+                            <Card.Text>Khu vực: {this.props.product.khuvuc}</Card.Text>
                         </div>
                         <hr />
                         <Container>
