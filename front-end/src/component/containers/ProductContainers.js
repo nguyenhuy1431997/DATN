@@ -33,7 +33,7 @@ class ProductContainers extends Component {
         if (this.props.shopping.length === 0) {
             this.props.onShopping(name, _id, price, accout);
         }
-        
+
         if (this.props.shopping.length > 0) {
             const resut = this.props.shopping.filter(shopping => shopping.accout === accout);
 
@@ -54,7 +54,7 @@ class ProductContainers extends Component {
 
                     }
                 }
-                
+
                 const kt = resut.filter(sp => sp._id === _id);
                 if (kt.length === 0) {
                     this.props.onShopping(name, _id, price, accout);
@@ -64,7 +64,7 @@ class ProductContainers extends Component {
             if (resut.length === 0) {
                 this.props.onShopping(name, _id, price, accout);
             }
-        }  
+        }
     }
     downShopping(name, _id, price, accout) {
         for (var i = 0; i < this.props.shopping.length; i++) {
@@ -87,6 +87,7 @@ class ProductContainers extends Component {
     render() {
         let { products } = this.props;
         let { access } = this.props;
+        let {khuvuc,loai,namNu}=this.props;
         let elm = products.map((product, index) => {
             return <Products
                 key={index}
@@ -104,7 +105,11 @@ class ProductContainers extends Component {
                     DANH SÁCH PHÒNG TRỌ
                 </Alert>
                 <Row>
-                    {elm.filter(elm => elm.props.product.name.toLowerCase().indexOf(this.props.filter.toLowerCase()) > -1)}
+                    {
+                        elm.filter(elm => elm.props.product.khuvuc.toLowerCase().indexOf(khuvuc.toLowerCase()) > -1)
+                            .filter(elm => elm.props.product.loaiphong.toLowerCase().indexOf(loai.toLowerCase()) > -1)
+                            .filter(elm => elm.props.product.nam_nu.toLowerCase().indexOf(namNu.toLowerCase()) > -1)
+                    }
                 </Row>
                 <br />
                 {
@@ -117,13 +122,13 @@ class ProductContainers extends Component {
                     <Col>
                         <Table striped bordered hover className="bg-light">
                             <thead>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Số lượng</th>
-                                    <th>Tổng tiền</th>
-                                    <th></th>
-                                </tr>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Tổng tiền</th>
+                                <th></th>
+                            </tr>
                             </thead>
                             <CardItem
                                 // shopping={shopping}

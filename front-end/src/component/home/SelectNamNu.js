@@ -3,7 +3,7 @@ import Select from "react-select";
 
 class SelectNamNu extends Component {
     render() {
-        let Options=[
+        let OptionsNamNu=[
             {value:'nam',label:'Nam'},
             {value:'nu',label:'Nữ'},
             {value:'namnuchung',label:'Chung Nam-Nữ'},
@@ -15,8 +15,10 @@ class SelectNamNu extends Component {
                     classNamePrefix="select"
                     defaultValue={[]}
                     name="color"
-                    options={Options}
+                    options={OptionsNamNu}
                     placeholder='Ưu tiên Nam/nữ'
+                    isClearable
+                    onChange={(value)=>{this.props.onFilterNamNu(value)}}
                 />
             </div>
         );

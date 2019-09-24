@@ -17,6 +17,7 @@ class SelectGia extends Component {
                     name="color"
                     options={Options}
                     placeholder='Chọn giá'
+                    isClearable
                 />
             </div>
         );

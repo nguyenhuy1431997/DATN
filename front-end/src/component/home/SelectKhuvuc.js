@@ -3,7 +3,7 @@ import Select from "react-select";
 
 class SelectKhuvuc extends Component {
     render() {
-        let Options=[
+        let OptionsKhuVuc=[
             {value:'lienchien',label:'Liên Chiển'},
             {value:'haichau',label:'Hải Châu'},
             {value:'camle',label:'Cẩm Lệ'},
@@ -20,8 +20,10 @@ class SelectKhuvuc extends Component {
                     classNamePrefix="select"
                     defaultValue={[]}
                     name="color"
-                    options={Options}
+                    options={OptionsKhuVuc}
                     placeholder='Chọn khu vực'
+                    onChange={(value)=>{this.props.onFilterKhuvuc(value)}}
+                    isClearable
                 />
             </div>
         );
