@@ -22,6 +22,7 @@ class ProductContainers extends Component {
         this.onShopping = this.onShopping.bind(this);
         this.downShopping = this.downShopping.bind(this);
         this.onEraseShopping = this.onEraseShopping.bind(this);
+        this.onEraseTro = this.onEraseTro.bind(this);
     }
 
     componentDidMount() {
@@ -84,6 +85,10 @@ class ProductContainers extends Component {
     onEraseShopping(id) {
         this.props.onEraseShopping(id);
     }
+
+    onEraseTro(id) {
+        this.props.onEraseTro(id);
+    }
     render() {
         let { products } = this.props;
         let { access } = this.props;
@@ -114,6 +119,7 @@ class ProductContainers extends Component {
                 access={access}
                 onShopping={this.onShopping}
                 accout={this.props.accout}
+                onEraseTro={this.onEraseTro}
             />
         });
         return (
@@ -217,6 +223,9 @@ const mapDispatchToProps = (dispatch, action) => {
         },
         onEraseShopping: (id) => {
             dispatch(actions.onEraseShoppingAPI(id));
+        },
+        onEraseTro: (id) => {
+            dispatch(actions.onEraseTroAPI(id));
         }
     }
 };
