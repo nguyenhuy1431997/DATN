@@ -164,3 +164,17 @@ export const onEraseShoppingAPI=(id)=>{
     }
 }
 
+export const onEraseTroAPI=(id)=>{
+    return(dispatch)=>{
+        return axios({
+            method: 'DELETE',
+            url: `http://localhost:3000/product/${id}`,
+            data: null
+        }).then(res => {
+            dispatch(stateproductsAPI());
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+}
+

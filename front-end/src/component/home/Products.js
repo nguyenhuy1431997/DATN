@@ -20,6 +20,12 @@ class Products extends Component {
         }
     }
 
+    onEraseTro(value){
+        if(confirm('Bạn chắc chắn Xóa không ?')){//eslint-disable-line
+            this.props.onEraseTro(value);
+        }
+    }
+
     render() {
         return (
             <Col className="Product mt-sm-4">
@@ -37,20 +43,26 @@ class Products extends Component {
                             <Row>
                                 <Col md={4}>{this.props.product.price}$</Col>
                                 <Col >
-                                    <Button
-                                        variant="outline-primary"
-                                        onClick={() => this.onShopping()}
-                                    >
-                                        <i className="fa fa-edit"></i>
-                                    </Button>
+                                    {
+                                        this.props.access &&
+                                        <Button
+                                            variant="outline-primary"
+                                            onClick={() => this.onShopping()}
+                                        >
+                                            <i className="fa fa-edit"></i>
+                                        </Button>
+                                    }
                                 </Col>
                                 <Col >
-                                    <Button
-                                        variant="outline-primary"
-                                        onClick={() => this.onShopping()}
-                                    >
-                                        <i className="fa fa-trash"></i>
-                                    </Button>
+                                    {
+                                        this.props.access &&
+                                        <Button
+                                            variant="outline-primary"
+                                            onClick={() => this.onEraseTro(this.props.product.id)}
+                                        >
+                                            <i className="fa fa-trash"></i>
+                                        </Button>
+                                    }
                                 </Col>
                             </Row>
                         </Container>
