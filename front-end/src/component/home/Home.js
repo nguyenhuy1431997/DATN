@@ -22,11 +22,17 @@ class Home extends Component {
             khuvuc: "",
             loai: "",
             namNu:"",
+            gia:"",
+            s:"",
+            loc:"",
             show:false
         };
         this.onFilterKhuvuc=this.onFilterKhuvuc.bind(this);
         this.onFilterLoai=this.onFilterLoai.bind(this);
         this.onFilterNamNu=this.onFilterNamNu.bind(this);
+        this.onFilterGia=this.onFilterGia.bind(this);
+        this.onFilterDienTich=this.onFilterDienTich.bind(this);
+        this.onFilterLoc=this.onFilterLoc.bind(this);
         this.handleShow=this.handleShow.bind(this);
         this.handleClose=this.handleClose.bind(this);
         this.onChange=this.onChange.bind(this);
@@ -70,6 +76,43 @@ class Home extends Component {
         }
 
     }
+    onFilterGia(value) {
+        if(value){
+            this.setState({
+                gia: value.label
+            });
+        }else {
+            this.setState({
+                gia:""
+            })
+        }
+
+    }
+    onFilterDienTich(value) {
+        if(value){
+            this.setState({
+                s: value
+            });
+        }else {
+            this.setState({
+                s:""
+            })
+        }
+
+    }
+
+    onFilterLoc(value) {
+        if(value){
+            this.setState({
+                loc: value.value
+            });
+        }else {
+            this.setState({
+                loc:""
+            })
+        }
+
+    }
 
     handleShow(){
         this.setState({
@@ -97,7 +140,7 @@ class Home extends Component {
 
     render() {
         let { access } = this.props;
-        let { khuvuc,loai,namNu,show } = this.state;
+        let { khuvuc,loai,namNu,gia,s,loc,show } = this.state;
         let OptionsKhuVuc=[
             {value:'lienchien',label:'Liên Chiển'},
             {value:'haichau',label:'Hải Châu'},
@@ -204,10 +247,10 @@ class Home extends Component {
                             <SelectKhuvuc onFilterKhuvuc={this.onFilterKhuvuc}/>
                         </Col>
                         <Col>
-                            <SelectGia/>
+                            <SelectGia onFilterGia={this.onFilterGia}/>
                         </Col>
                         <Col>
-                            <Dientich/>
+                            <Dientich onFilterDienTich={this.onFilterDienTich}/>
                         </Col>
                     </Row>
                     <Row className='mt-4'>
@@ -221,7 +264,7 @@ class Home extends Component {
                             <SelectNamNu onFilterNamNu={this.onFilterNamNu}/>
                         </Col>
                         <Col>
-                            <Loc/>
+                            <Loc onFilterLoc={this.onFilterLoc}/>
                         </Col>
                     </Row>
                 </Container>
@@ -303,6 +346,9 @@ class Home extends Component {
                     khuvuc={khuvuc}
                     loai={loai}
                     namNu={namNu}
+                    gia={gia}
+                    s={s}
+                    loc={loc}
                 >
                 </ProductContainers>
             </div>

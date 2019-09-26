@@ -6,7 +6,8 @@ class Dientich extends Component {
             <div>
                 <input
                     className='dientich'
-                    placeholder='Chọn diện tích'
+                    placeholder='Chọn diện tích m2'
+                    onChange={(value)=>{this.props.onFilterDienTich(value.target.value)}}
                 />
             </div>
         );
