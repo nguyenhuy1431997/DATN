@@ -67,7 +67,7 @@ class ProductContainers extends Component {
         }
     }
     downShopping(name, _id, price, accout) {
-        for (var i = 0; i < this.props.shopping.length; i++) {
+        for (let i = 0; i < this.props.shopping.length; i++) {
             if (accout === this.props.shopping[i].accout) {
                 if (_id === this.props.shopping[i]._id) {
                     let id = this.props.shopping[i].id;
@@ -87,7 +87,25 @@ class ProductContainers extends Component {
     render() {
         let { products } = this.props;
         let { access } = this.props;
-        let {khuvuc,loai,namNu}=this.props;
+        let {khuvuc,loai,namNu,gia,s,loc}=this.props;
+        let t;
+        for (let i=0;i<gia.length;i++){
+            if (gia[i]==='>'){
+                t=9;
+                break;
+            }
+            if(Number(gia[i])===1||Number(gia[i])===3||Number(gia[i])===5||Number(gia[i])===7) {
+                t=Number(gia[i]);
+            }
+
+        }
+        let l;
+        if (loc==='giacaodenthap'){
+            l=1;
+        }
+        if (loc==='giathapdencao'){
+            l=2;
+        }
         let elm = products.map((product, index) => {
             return <Products
                 key={index}
@@ -105,10 +123,36 @@ class ProductContainers extends Component {
                     DANH SÁCH PHÒNG TRỌ
                 </Alert>
                 <Row>
-                    {
+                    {   l?
                         elm.filter(elm => elm.props.product.khuvuc.toLowerCase().indexOf(khuvuc.toLowerCase()) > -1)
                             .filter(elm => elm.props.product.loaiphong.toLowerCase().indexOf(loai.toLowerCase()) > -1)
                             .filter(elm => elm.props.product.nam_nu.toLowerCase().indexOf(namNu.toLowerCase()) > -1)
+                            .filter(elm => (
+                                elm.props.product.price/1000<(t?t:5000) && elm.props.product.price/1000>(t?(t-2):0)
+                            ))
+                            .filter(elm => (
+                                elm.props.product.dientich<(s?Number(s)+3:500) && elm.props.product.dientich>(s?Number(s)-3:0)
+                                )
+                            )
+                            .sort(function(a, b) {
+                                if (l===1){
+                                    return b.props.product.price - a.props.product.price;
+                                }
+                                if (l===2){
+                                    return a.props.product.price - b.props.product.price;
+                                }
+                            })
+                        :
+                        elm.filter(elm => elm.props.product.khuvuc.toLowerCase().indexOf(khuvuc.toLowerCase()) > -1)
+                            .filter(elm => elm.props.product.loaiphong.toLowerCase().indexOf(loai.toLowerCase()) > -1)
+                            .filter(elm => elm.props.product.nam_nu.toLowerCase().indexOf(namNu.toLowerCase()) > -1)
+                            .filter(elm => (
+                                elm.props.product.price/1000<(t?t:5000) && elm.props.product.price/1000>(t?(t-2):0)
+                            ))
+                            .filter(elm => (
+                                    elm.props.product.dientich<(s?Number(s)+3:500) && elm.props.product.dientich>(s?Number(s)-3:0)
+                                )
+                            )
                     }
                 </Row>
                 <br />
