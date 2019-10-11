@@ -12,19 +12,19 @@ module.exports = [
     });
   }),
 
-  body("name")
-    .exists()
-    .withMessage("name_is_required")
-    .not()
-    .isEmpty()
-    .withMessage("name_is_required")
-    .custom(value => {
-      return RoomService.findOneByName(value).then(result => {
-        if (result.success) {
-          return Promise.reject("name_exists");
-        }
-      });
-    }),
+  // body("name")
+  //   .exists()
+  //   .withMessage("name_is_required")
+  //   .not()
+  //   .isEmpty()
+  //   .withMessage("name_is_required")
+  //   .custom(value => {
+  //     return RoomService.findOneByName(value).then(result => {
+  //       if (result.success) {
+  //         return Promise.reject("name_exists");
+  //       }
+  //     });
+  //   }),
 
   body("districtId")
     .exists()

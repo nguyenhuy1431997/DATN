@@ -1,4 +1,0 @@
-export const REGISTER="REGISTER" ;
-export const SHOPPING="SHOPPING" ;
-export const STATE_PRODUCT="STATE_PRODUCT" ;
-export const STATE_SHOPPING="STATE_SHOPPING" ;

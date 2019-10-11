@@ -4,14 +4,14 @@ import Select from "react-select";
 class SelectKhuvuc extends Component {
     render() {
         let OptionsKhuVuc=[
-            {value:'lienchien',label:'Liên Chiển'},
-            {value:'haichau',label:'Hải Châu'},
-            {value:'camle',label:'Cẩm Lệ'},
-            {value:'thanhkhe',label:'Thanh Khê'},
-            {value:'nguhanhson',label:'Ngũ Hành Sơn'},
-            {value:'sontra',label:'Sơn Trà'},
-            {value:'hoavang',label:'Hòa Vang'},
-            {value:'hoangsa',label:'Hoàng Sa'},
+            {value:1,label:'Liên Chiểu'},
+            {value:2,label:'Hải Châu'},
+            {value:3,label:'Cẩm Lệ'},
+            {value:4,label:'Thanh Khê'},
+            {value:5,label:'Ngũ Hành Sơn'},
+            {value:6,label:'Sơn Trà'},
+            {value:7,label:'Hòa Vang'},
+            {value:8,label:'Hoàng Sa'},
         ];
         return (
             <div>
