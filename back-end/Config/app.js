@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cros = require('cors');
 
 require("dotenv").config();
 
@@ -13,6 +14,8 @@ app.use(
     extended: true
   })
 );
+
+app.use(cros());
 
 app.use(bodyParser.json());
 

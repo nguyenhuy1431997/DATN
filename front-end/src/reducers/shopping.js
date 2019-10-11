@@ -1,4 +1,4 @@
-import * as types from './../component/constants/actiontypes';
+import * as types from './../constants/actiontypes';
 
 var inititalState = [];
 const shopping = (state = inititalState, action) => {

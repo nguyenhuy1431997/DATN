@@ -8,5 +8,5 @@ app.use((req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
-  return res.status(400).json(error);
+  return res.status(200).json(error);
 });

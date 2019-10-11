@@ -10,7 +10,7 @@ var storage = multer.diskStorage({
   },
 
   filename: function(req, file, cb) {
-    var datetimestamp = Date.now();
+    var datetimestamp = Date.now()  ;
     var ext = path.extname(file.originalname);
     cb(
       null,
@@ -25,6 +25,7 @@ var upload = multer({
   storage: storage,
   fileFilter: function(req, file, cb) {
     var ext = path.extname(file.originalname);
+    console.log(ext)
     if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
       return cb(jsonError("Only_images_are_allowed"));
     }

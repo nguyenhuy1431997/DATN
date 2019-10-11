@@ -4,8 +4,8 @@ import Select from "react-select";
 class SelectNamNu extends Component {
     render() {
         let OptionsNamNu=[
-            {value:'nam',label:'Nam'},
-            {value:'nu',label:'Nữ'},
+            {value:'male',label:'Nam'},
+            {value:'female',label:'Nữ'},
             {value:'namnuchung',label:'Chung Nam-Nữ'},
             ];
         return (
