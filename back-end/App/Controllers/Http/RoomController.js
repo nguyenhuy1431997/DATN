@@ -88,14 +88,16 @@ class RoomController {
 
   async filter({ req, res, next }) {
     const { page, pageSize } = req.params;
-    const { districtId, roomTypeId, keySearch } = req.query;
+    const { districtId, roomTypeId, keySearch, userId, isAvailable } = req.query;
 
     const result = await this.roomService.filter({
       page,
       pageSize,
       keySearch,
       districtId,
-      roomTypeId
+      roomTypeId, 
+      userId, 
+      isAvailable
     });
 
     if (!result.success) {

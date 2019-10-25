@@ -31,6 +31,7 @@ class AuthMiddleware {
       const dataToken = jwt.verify(token, Env.APP_KEY);
 
       req.userId = dataToken.userId;
+      req.body.userId = dataToken.userId;
       next();
     } catch (err) {
       return next(jsonError("UnAuthorization"));

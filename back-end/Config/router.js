@@ -12,6 +12,8 @@ const room = require("../Routers/room");
 
 const roomImage = require("../Routers/roomImage");
 
+const retailing = require("../Routers/retailing");
+
 const app = require("./app");
 
 const apiPrefix = "/api/v1";
@@ -29,3 +31,5 @@ app.use(`${apiPrefix}/imagetypes`, imageType);
 app.use(`${apiPrefix}/rooms`, room);
 
 app.use(`${apiPrefix}/roomimages`, roomImage);
+
+app.use(`${apiPrefix}/retailings`, retailing);

@@ -81,7 +81,15 @@ class RoomService {
     }
   }
 
-  async filter({ page, pageSize, keySearch, districtId, roomTypeId }) {
+  async filter({
+    page,
+    pageSize,
+    keySearch,
+    districtId,
+    roomTypeId,
+    userId,
+    isAvailable
+  }) {
     try {
       const query = this.roomModel
         .query()
@@ -104,6 +112,16 @@ class RoomService {
       if (roomTypeId) {
         query.where("roomtypeId", roomTypeId);
         counterQuery.where("roomtypeId", roomTypeId);
+      }
+
+      if (userId) {
+        query.where("userId", userId);
+        counterQuery.where("userId", userId);
+      }
+
+      if (isAvailable) {
+        query.where("isAvailable", isAvailable);
+        counterQuery.where("isAvailable", isAvailable);
       }
 
       const rooms = await query
@@ -151,6 +169,8 @@ class RoomService {
         price: body.price
       };
 
+      await this.checkRoom(id, body.userId);
+
       const roomUpdated = await this.roomModel
         .query()
         .where("id", id)
@@ -164,6 +184,8 @@ class RoomService {
 
   async delete(id) {
     try {
+      await this.checkRoom(id, body.userId);
+
       const roomDeleted = await this.roomModel
         .query()
         .where("id", id)
@@ -177,6 +199,8 @@ class RoomService {
 
   async restore(id) {
     try {
+      await this.checkRoom(id, body.userId);
+
       const roomDeleted = await this.roomModel
         .query()
         .where("id", id)
@@ -185,6 +209,19 @@ class RoomService {
       return jsonSuccess(roomDeleted);
     } catch (error) {
       return jsonError(error);
+    }
+  }
+
+  async checkRoom(id, userId) {
+    const room = await this.roomModel
+      .query()
+      .where({ "rooms.id": id, "rooms.status": status })
+      .select({
+        userId: "rooms.userId"
+      });
+
+    if (room.userId !== userId) {
+      throw jsonError(Errors.ROOM_NOT_USERS);
     }
   }
 }

@@ -6,7 +6,7 @@ module.exports = {
     host: "localhost",
     database: "timtro",
     user: "root",
-    password: "",
+    password: "123456",
     port: 3306
   },
   pool: {
