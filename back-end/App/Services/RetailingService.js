@@ -125,6 +125,11 @@ class RetailingService {
         .where({ roomId: room.id, status: statusRentailing.PENDING })
         .update({ status: statusRentailing.REJECT });
 
+      await this.roomModel
+        .query()
+        .where({ id: room.id })
+        .update({ isAvailable: false });
+
       return jsonSuccess();
     } catch (error) {
       return jsonError(error);
