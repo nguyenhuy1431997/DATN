@@ -19,6 +19,10 @@ class Products extends Component {
         }
     }
 
+    dat(id){
+        this.props.dat(id)
+    }
+
     render() {
         const { room } = this.props;
         // console.log(room);
@@ -68,6 +72,17 @@ class Products extends Component {
                                             onClick={() => this.eraseRoom(this.props.room.id)}
                                         >
                                             <i className="fa fa-trash"></i>
+                                        </Button>
+                                    }
+                                </Col>
+                                <Col >
+                                    {
+                                        this.props.nhanghi && !this.props.auth._token &&
+                                        <Button
+                                            variant="outline-primary"
+                                            onClick={() => this.dat(this.props.room.id)}
+                                        >
+                                            Đặt
                                         </Button>
                                     }
                                 </Col>

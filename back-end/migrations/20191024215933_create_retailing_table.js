@@ -19,6 +19,7 @@ exports.up = function(knex, Promise) {
       .references("id")
       .inTable("rooms");
     table.string("status", 10).notNull();
+    table.string("phoneNumber", 20).notNull(); 
     table.timestamp("created_at").defaultTo(knex.fn.now());
   });
 };

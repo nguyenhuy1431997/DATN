@@ -24,6 +24,7 @@ class ProductContainers extends Component {
         // this.onEraseShopping = this.onEraseShopping.bind(this);
         this.updateRoom = this.updateRoom.bind(this);
         this.eraseRoom = this.eraseRoom.bind(this);
+        this.dat=this.dat.bind(this);
     }
 
     // componentWillMount() {
@@ -100,8 +101,14 @@ class ProductContainers extends Component {
         // console.log(id)
         this.props.eraseRoom(id, this.props.auth._token);
     }
+
+    dat(id) {
+        // console.log(id);
+        this.props.handleShow(id);
+    }
+
     render() {
-        let { rooms, auth } = this.props;
+        let { rooms, auth,nhanghi } = this.props;
         // let { access } = this.props;
         let { khuvuc, loai, namNu, gia, s, loc } = this.props;
         let t;
@@ -133,20 +140,29 @@ class ProductContainers extends Component {
                     updateRoom={this.updateRoom}
                     auth={auth}
                     eraseRoom={this.eraseRoom}
+                    dat={this.dat}
+                    nhanghi={nhanghi}
                 />
             });
+        }
+        let nha_nghi;
+        if(nhanghi){
+            console.log(rooms);
+            nha_nghi='Nhà nghỉ'
         }
         return (
             <Container>
                 <br />
                 <Alert variant="dark" className={"d-flex flex-column align-items-center"}>
-                    DANH SÁCH PHÒNG TRỌ
+                    {nha_nghi?'DANH SÁCH NHÀ NGHỈ':'DANH SÁCH PHÒNG TRỌ'}
                 </Alert>
                 <Row>
                     {elm &&
                         (l ?
                             elm.filter(elm => elm.props.room.districtName.toLowerCase().indexOf(khuvuc.toLowerCase()) > -1)
-                                .filter(elm => elm.props.room.roomTypeName.toLowerCase().indexOf(loai.toLowerCase()) > -1)
+                                .filter(elm => nha_nghi?elm.props.room.roomTypeName.toLowerCase().indexOf(nha_nghi.toLowerCase()) > -1:
+                                elm.props.room.roomTypeName.toLowerCase().indexOf(loai.toLowerCase())>-1
+                                )
                                 .filter(elm => elm.props.room.priority.toLowerCase().indexOf(namNu.toLowerCase()) > -1)
                                 .filter(elm => (
                                     elm.props.room.price / 1000 <= (t ? t : 5000) && elm.props.room.price / 1000 > (t ? (t - 2) : 0)
@@ -165,7 +181,9 @@ class ProductContainers extends Component {
                                 })
                             :
                             elm.filter(elm => elm.props.room.districtName.toLowerCase().indexOf(khuvuc.toLowerCase()) > -1)
-                                .filter(elm => elm.props.room.roomTypeName.toLowerCase().indexOf(loai.toLowerCase()) > -1)
+                                .filter(elm => nha_nghi?elm.props.room.roomTypeName.toLowerCase().indexOf(nha_nghi.toLowerCase()) > -1
+                                :elm.props.room.roomTypeName.toLowerCase().indexOf(loai.toLowerCase())>-1
+                                )
                                 .filter(elm => elm.props.room.priority.toLowerCase().indexOf(namNu.toLowerCase()) > -1)
                                 .filter(elm => (
                                     elm.props.room.price / 1000 <= (t ? t : 5000) && elm.props.room.price / 1000 > (t ? (t - 2) : 0)

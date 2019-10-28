@@ -46,6 +46,7 @@ class RetailingService {
       const dataInsert = {
         roomId: body.roomId,
         renterId: body.userId,
+        phoneNumber: body.phoneNumber,
         status: statusRentailing.PENDING
       };
 

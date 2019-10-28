@@ -3,17 +3,18 @@ import { Form } from 'react-bootstrap';
 import { Button, Nav, Navbar, Carousel } from 'react-bootstrap';
 import ProductContainers from '../../containers/ProductContainers';
 import { Container, Row, Col } from 'react-bootstrap';
-import './Home.css';
-import SelectKhuvuc from "./SelectKhuvuc";
-import SelectGia from "./SelectGia";
-import SelectLoai from "./SelectLoai";
-import SelectNamNu from "./SelectNamNu";
-import Dientich from "./Dientich";
-import Loc from "./Loc";
-import AddModal from './AddModal';
+// import './Home.css';
+import SelectKhuvuc from "./../home/SelectKhuvuc";
+import SelectGia from "./../home/SelectGia";
+import SelectLoai from "./../home/SelectLoai";
+import SelectNamNu from "./../home/SelectNamNu";
+import Dientich from "./../home/Dientich";
+import Loc from "./../home/Loc";
+import Modal from "./Modal"
 import { connect } from 'react-redux';
-import * as actions from './../../actions/index';
-import {Link} from 'react-router-dom';
+import * as actions from '../../actions/index';
+import { Link } from 'react-router-dom';
+
 
 class Home extends Component {
 
@@ -36,7 +37,8 @@ class Home extends Component {
             gia: "",
             s: "",
             loc: "",
-            show: false
+            show: false,
+            nhanghi: true
         };
         this.onFilterKhuvuc = this.onFilterKhuvuc.bind(this);
         this.onFilterLoai = this.onFilterLoai.bind(this);
@@ -151,14 +153,14 @@ class Home extends Component {
     handleClose() {
         this.setState({
             id: null,
-            name:null,
-            address:null,
-            price:null,
-            area:null,
-            districtId:null,
-            description:null,
-            priority:null,
-            roomTypeId:null,
+            name: null,
+            address: null,
+            price: null,
+            area: null,
+            districtId: null,
+            description: null,
+            priority: null,
+            roomTypeId: null,
             show: !this.state.show
         })
     }
@@ -166,13 +168,15 @@ class Home extends Component {
     render() {
         // let { access } = this.props;
         let { auth } = this.props;
-        let { id, name, address, price, area, districtId, description, priority, roomTypeId, images, khuvuc, loai, namNu, gia, s, loc, show } = this.state;
+        console.log(auth);
+
+        let { id, name, address, price, area, districtId, description, priority, roomTypeId, images, khuvuc, loai, namNu, gia, s, loc, show, nhanghi } = this.state;
         return (
             <div className="Home">
                 <Navbar className="Header">
                     <Link to="/" className="text-light">Trang chủ</Link>
                     <Nav className="mr-auto">
-                        <Link to="#home" className="text-light">Trang cá nhân</Link>
+                        <Link to="" className="text-light">Trang cá nhân</Link>
                         <Link to="/" className="text-light">Nhà Trọ</Link>
                         <Link to="/nhanghi" className="text-light">Nhà nghỉ</Link>
                     </Nav>
@@ -209,7 +213,7 @@ class Home extends Component {
                         >Đăng xuất</Button>}
                     </Form>
                 </Navbar>
-                <div className="container mt-3">
+                {/* <div className="container mt-3">
                     <Carousel className="slide">
                         <Carousel.Item className='slide_Item'>
                             <img
@@ -241,7 +245,7 @@ class Home extends Component {
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
-                </div>
+                </div> */}
                 <Container className='mt-4'>
                     <Row>
                         <Col>
@@ -264,10 +268,10 @@ class Home extends Component {
 
                         </Col>
                         <Col>
-                            <SelectLoai onFilterLoai={this.onFilterLoai} />
+                            {!nhanghi && <SelectLoai onFilterLoai={this.onFilterLoai} />}
                         </Col>
                         <Col>
-                            <SelectNamNu onFilterNamNu={this.onFilterNamNu} />
+                            {!nhanghi && <SelectNamNu onFilterNamNu={this.onFilterNamNu} />}
                         </Col>
                         <Col>
                             <Loc onFilterLoc={this.onFilterLoc} />
@@ -299,7 +303,7 @@ class Home extends Component {
                         </Col>
                     </Row>
                 </Container>
-                <AddModal
+                <Modal
                     id={id}
                     name={name}
                     address={address}
@@ -324,6 +328,7 @@ class Home extends Component {
                     s={s}
                     loc={loc}
                     handleShow={this.handleShow}
+                    nhanghi
                 >
                 </ProductContainers>
             </div>
