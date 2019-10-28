@@ -7,6 +7,7 @@ import { Route } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import * as actions from './actions/index';
+import Nhanghi from './component/nhanghi/Nhanghi';
 
 class App extends Component {
     constructor(props) {
@@ -162,6 +163,17 @@ class App extends Component {
                     <Register
                         onRegisterClick={this.onRegisterClick}
                         onMore={this.onMore}
+                    />
+                } />
+                <Route path="/nhanghi/" render={() =>
+                    <Nhanghi
+                        onRegisterLinkClick={this.onRegisterLinkClick}
+                        onLoginClick={this.onLoginClick}
+                        onLoginLinkClick={this.onLoginLinkClick}
+                        onRegisterClick={this.onRegisterClick}
+                        onMore={this.onMore}
+                        auth={auth}
+
                     />
                 } />
             </div>
